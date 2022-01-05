@@ -19,6 +19,8 @@
     <link rel="shortcut icon" href="~/assets/media/logos/favicon.ico" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"  crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/font-awesome-line-awesome/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--end::Fonts-->
     <!--begin::Page Vendor Stylesheets(used by this page)-->
     <link href="~/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
@@ -5649,21 +5651,10 @@
     </div>
     <!--end::Scrolltop-->
     <!--begin::Global Javascript Bundle(used by all pages)-->
-    @*<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>*@
-    <script src="~/assets/plugins/global/plugins.bundle.js"></script>
-    <script src="~/assets/js/custom/prismsj.js"></script>
+
+    <script src="~/assets/plugins/global/plugins.bundle.js"></script>   
     <script src="~/assets/js/scripts.bundle.js"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Page Vendors Javascript(used by this page)-->
-    @*<script src="~/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>*@
-    <!--end::Page Vendors Javascript-->
-    <!--begin::Page Custom Javascript(used by this page)-->
-    @*<script src="~/assets/js/custom/widgets.js"></script>
-    <script src="~/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="~/assets/js/custom/modals/create-app.js"></script>
-    <script src="~/assets/js/custom/modals/upgrade-plan.js"></script>
-    <script src="~/assets/js/custom/intro.js"></script>*@
+   
     @RenderSection("Scripts", required: false)
 
 </body>

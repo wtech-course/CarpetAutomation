@@ -55,5 +55,7 @@ namespace CarpetAutomation.DataAccess.Repositories
         {
             return Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
+
+        
     }
 }

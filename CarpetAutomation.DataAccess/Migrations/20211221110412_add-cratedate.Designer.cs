@@ -4,14 +4,16 @@ using CarpetAutomation.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarpetAutomation.DataAccess.Migrations
 {
     [DbContext(typeof(CarpetDBContext))]
-    partial class CarpetDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211221110412_add-cratedate")]
+    partial class addcratedate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

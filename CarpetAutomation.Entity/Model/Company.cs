@@ -17,6 +17,7 @@ namespace CarpetAutomation.Entities
         public int CompanyNumber { get; set; }
         public string CompanyName { get; set; }
         public string Address { get; set; }
+        public DateTime CreateDate { get; set; }
         public ICollection<Branch> Branchs { get; set; }
     }
 }
