@@ -20,6 +20,13 @@ namespace CarpetAutomation.Api.Helpers
             return new Response<T>() { Data = data, Code = HttpStatusCode.OK, Message = "Success", FriendlyMessage = friendlyMessage, RecordsTotal = totalCount, RecordsFiltered = totalCount };
         }
 
+        public Response<T> Error(int totalCount, T data, string message = "Error")
+        {
+            //generic doğru
+            return new Response<T>() { Data = data, Code = HttpStatusCode.OK, Message = "Error", FriendlyMessage = message, RecordsTotal = totalCount, RecordsFiltered = totalCount };
+        }
+
+
 
 
         public Response<T> Created(T data, string friendlyMessage = "Successfully")

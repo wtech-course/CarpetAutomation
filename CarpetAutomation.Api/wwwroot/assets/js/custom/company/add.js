@@ -4,14 +4,13 @@ var KTUsersAddUser = function () {
         e = t.querySelector("#kt_modal_add_company_form"),
         n = new bootstrap.Modal(t);
       
-    var company, number, s;
-    function formatDate() {
-        debugger;
-        var today = new Date();
-        var date = today.getDate(); + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date + ' ' + time;
-        return dateTime;
+    var company, number;
+    function convertUTCDateToLocalDate(date) {
+        var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+        var offset = date.getTimezoneOffset() / 60;
+        var hours = date.getHours();
+        newDate.setHours(hours - offset);
+        return newDate;
     }
     return {
         init: function () {
@@ -62,9 +61,9 @@ var KTUsersAddUser = function () {
                                         companynumber: number,
                                         companyname: $("[name='company_name']").val(),
                                         address: $("[name='company_address']").val(),
-                                        creatdate: formatDate()
+                                        createdate: convertUTCDateToLocalDate(new Date(Date.now()))
                                     };
-                                    console.log("data", JSON.stringify(company));
+                                   
                                     $.ajax({
                                         type: "POST",
                                         url: "https://localhost:44363/api/company/create",

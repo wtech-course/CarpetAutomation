@@ -22,15 +22,7 @@ namespace CarpetAutomation.Api.Controllers
         {
             this._companyServices = companyServices;
         }
-        //url/api/company/getallcompanies
-        [HttpGet("[action]")]
-        //public async Task<ActionResult<IEnumerable<Company>>> GetAllCompanies()
-        //{
-        //    var company = await _companyServices.GetAllCompanies();
-        //    //var data = JsonConvert.SerializeObject(company);
 
-        //    return Ok(company);
-        //}
 
         [HttpPost("GetAllCompanies")]
         public async Task<Response<IEnumerable<Company>>> GetAllCompanies()
@@ -69,35 +61,37 @@ namespace CarpetAutomation.Api.Controllers
             {
                 throw;
             }
-            //var companies = await _companyServices.GetAllCompanies();
-            //if (!companies.Any())
-            //{
-            //    return new Response<IEnumerable<Company>>().NoContent();
-            //}
-            //List olsaydı .count parantez yazmamız doğru değil.
-            
+         
+
         }
 
         [HttpPost("[action]")]
-        public async Task<Company> Create(Company company)
+        public async Task<Response<Company>> Create(Company company)
         {
-            await _companyServices.CreateCompany(company);
-            return company;
+            try
+            {
+                await _companyServices.CreateCompany(company);
+                return new Response<Company>().Ok(1, company);
+            }
+            catch (Exception ex)
+            {
+                return new Response<Company>().Error(1, company,ex.ToString());
+            }
         }
 
         [HttpPost("[action]/{id}")]
         public async Task Delete(int id)
         {
-            if (id!=0)
+            if (id != 0)
             {
                 var deleteData = await _companyServices.GetCompanyById(id);
-               
+
                 await _companyServices.DeleteCompany(deleteData);
             }
-            
-            
+
+
         }
-       
+
 
 
 
