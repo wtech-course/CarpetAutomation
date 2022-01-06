@@ -11,7 +11,7 @@ namespace CarpetAutomation.Service.Abstract
         Task<IEnumerable<Company>> GetAllCompanies();
         Task<Company> GetCompanyById(int id);
         Task<Company> CreateCompany(Company newcompany);
-        Task UpdateCompany(Company companyToBeUpdated, Company company);
+        Task UpdateCompany(Company company);
         Task DeleteCompany(Company company);
     }
 }

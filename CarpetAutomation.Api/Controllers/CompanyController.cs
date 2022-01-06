@@ -23,7 +23,12 @@ namespace CarpetAutomation.Api.Controllers
             this._companyServices = companyServices;
         }
 
-
+        [HttpGet("[action]")]
+        public async Task<Response<IEnumerable<Company>>> GetAllData()
+        {
+           var company= await _companyServices.GetAllCompanies();
+            return new Response<IEnumerable<Company>>().Ok( company.Count(),company);
+        }
         [HttpPost("GetAllCompanies")]
         public async Task<Response<IEnumerable<Company>>> GetAllCompanies()
         {
@@ -68,9 +73,12 @@ namespace CarpetAutomation.Api.Controllers
         [HttpPost("[action]")]
         public async Task<Response<Company>> Create(Company company)
         {
+
             try
             {
+                if (company.Id==0)
                 await _companyServices.CreateCompany(company);
+                else await _companyServices.UpdateCompany(company);
                 return new Response<Company>().Ok(1, company);
             }
             catch (Exception ex)
@@ -92,6 +100,19 @@ namespace CarpetAutomation.Api.Controllers
 
         }
 
+        //[HttpPost("[action]")]
+        //public async Task<Response<Company>> Update(Company companyUpdated, Company company)
+        //{
+        //    try
+        //    {
+        //        await _companyServices.UpdateCompany(companyUpdated, company);
+        //        return new Response<Company>().Ok(1, company);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new Response<Company>().Error(1, company, ex.ToString());
+        //    }
+        //}
 
 
 

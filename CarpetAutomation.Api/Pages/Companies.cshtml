@@ -240,7 +240,7 @@
             <!--begin::Modal header-->
             <div class="modal-header" id="kt_modal_add_company_header">
                 <!--begin::Modal title-->
-                <h2 class="fw-bolder">Add User</h2>
+                <h2 class="fw-bolder" id="titleModal">Add User</h2>
                 <!--end::Modal title-->
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -260,10 +260,12 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                 <!--begin::Form-->
                 <form id="kt_modal_add_company_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+                    
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_company_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_company_header" data-kt-scroll-wrappers="#kt_modal_add_company_scroll" data-kt-scroll-offset="300px" style="max-height: 368px;">
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <input  name="company_id" value="0" hidden/>
                             <!--begin::Label-->
                             <label class="required fw-bold fs-6 mb-2">Vergi Kimlik Numarası</label>
                             <!--end::Label-->

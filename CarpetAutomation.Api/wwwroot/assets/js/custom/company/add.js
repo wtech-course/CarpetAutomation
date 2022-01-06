@@ -3,8 +3,8 @@ var KTUsersAddUser = function () {
     const t = document.getElementById("kt_modal_add_company"),
         e = t.querySelector("#kt_modal_add_company_form"),
         n = new bootstrap.Modal(t);
-      
-    var company, number;
+
+    var company, number, company_id;
     function convertUTCDateToLocalDate(date) {
         var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
         var offset = date.getTimezoneOffset() / 60;
@@ -52,18 +52,27 @@ var KTUsersAddUser = function () {
                 i.addEventListener("click", (t => {
                     t.preventDefault(),
                         o && o.validate().then((function (t) {
-                            console.log("validated!"), "Valid" == t ? (i.setAttribute("data-kt-indicator", "on"),
+                            console.log("id", company_id), "Valid" == t ? (i.setAttribute("data-kt-indicator", "on"),
                                 i.disabled = !0, setTimeout((function () {
                                     i.removeAttribute("data-kt-indicator"),
                                         i.disabled = !1,
-                                        number = parseInt($("[name='company_citizen_number']").val());
+
+                                    number = parseInt($("[name='company_citizen_number']").val());
+                                    debugger;                                  
+                                    if ($("[name='company_id']").val() == "0") {
+                                        company_id = 0;
+                                    } else {
+                                        company_id = parseInt($("[name='company_id']").val());
+                                    }
+
                                     company = {
+                                        id: company_id,
                                         companynumber: number,
                                         companyname: $("[name='company_name']").val(),
                                         address: $("[name='company_address']").val(),
                                         createdate: convertUTCDateToLocalDate(new Date(Date.now()))
                                     };
-                                   
+                                    console.log(JSON.stringify(company));
                                     $.ajax({
                                         type: "POST",
                                         url: "https://localhost:44363/api/company/create",

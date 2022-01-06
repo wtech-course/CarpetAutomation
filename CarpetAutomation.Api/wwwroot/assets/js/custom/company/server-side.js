@@ -21,8 +21,8 @@ var KTDatatablesServerSide = function () {
             },
             ajax: {
                 url: "https://localhost:44363/api/company/GetAllCompanies",
-                type: "POST",
-                cache: false,
+                type: "POST"
+
             },
             columns: [
                 { data: 'id' },
@@ -67,7 +67,7 @@ var KTDatatablesServerSide = function () {
                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-docs-table-filter="edit_row">
+                                    <a href="#" class="menu-link px-3" data-kt-docs-table-filter="edit_row" id="edit">
                                         Edit
                                     </a>
                                 </div>
@@ -99,6 +99,7 @@ var KTDatatablesServerSide = function () {
             initToggleToolbar();
             toggleToolbars();
             handleDeleteRows();
+            handleEditRowDatatable();
             KTMenu.createInstances();
         });
     }
@@ -138,7 +139,30 @@ var KTDatatablesServerSide = function () {
             dt.search(paymentValue).draw();
         });
     }
+    //Edit Datatable row 
+    var handleEditRowDatatable = () => {
+        const editButton = document.querySelectorAll('[data-kt-docs-table-filter="edit_row"]');
+        editButton.forEach(f => {
+            // Edit datatable on submit
+            f.addEventListener('click', function (e) {
+                e.preventDefault();
+                const parent = e.target.closest('tr');
+                var id = parent.querySelectorAll('td')[1].innerText;
+                var companyNumber = parent.querySelectorAll('td')[2].innerText;
+                var companyName = parent.querySelectorAll('td')[3].innerText;
+                var address = parent.querySelectorAll('td')[4].innerText;
 
+                $("[name='company_name']").val(companyName);
+                $("[name='company_citizen_number']").val(companyNumber);
+                $("[name='company_address']").val(address);
+                $("[name='company_id']").val(id);
+                $('#kt_modal_add_company').modal('show');
+                //Model id,companyName,companyNumber,address,createDate
+            })
+
+        });
+
+    }
     // Delete customer
     var handleDeleteRows = () => {
         // Select all delete buttons
@@ -353,6 +377,7 @@ var KTDatatablesServerSide = function () {
             handleFilterDatatable();
             handleDeleteRows();
             handleResetForm();
+            handleEditRowDatatable();
         }
     }
 }();

@@ -38,9 +38,9 @@ namespace CarpetAutomation.Service.Concrete
             return await _unitOfWork.Companies.GetByIdAsync(id);
         }
 
-        public async Task UpdateCompany(Company companyToBeUpdated, Company company)
+        public async Task UpdateCompany(Company company)
         {
-            companyToBeUpdated.CompanyName = company.CompanyName;
+            _unitOfWork.Companies.Update(company);
             await _unitOfWork.CommitAsync();
         }
     }

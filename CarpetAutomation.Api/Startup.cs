@@ -20,6 +20,7 @@ using System;
 using System.IO;
 using System.Text;
 
+
 namespace CarpetAutomation.Api
 {
     public class Startup
@@ -66,12 +67,15 @@ namespace CarpetAutomation.Api
                 _.Password.RequireDigit = false; //0-9 arasý sayýsal karakter zorunluluðunu kaldýrýyoruz.
             }).AddEntityFrameworkStores<CarpetDBContext>();
             services.AddControllers();
-          
-            services.AddMvc().AddRazorPagesOptions(options => {
+            services.AddCors(options =>
+                             options.AddDefaultPolicy(builder =>
+                             builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
                 options.Conventions.AddPageRoute("/Login", "");
             });
             services.AddSwaggerDocument();
-           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,11 +91,13 @@ namespace CarpetAutomation.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseRouting();
+           
             app.UseOpenApi();
             app.UseSwaggerUi3();
             app.UseStaticFiles();

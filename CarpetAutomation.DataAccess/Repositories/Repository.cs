@@ -21,7 +21,7 @@ namespace CarpetAutomation.DataAccess.Repositories
             await Context.Set<TEntity>().AddAsync(entity);
         }
 
-        public async  Task AddRangeAsync(IEnumerable<TEntity> entities)
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
             await Context.Set<TEntity>().AddRangeAsync(entities);
         }
@@ -56,6 +56,11 @@ namespace CarpetAutomation.DataAccess.Repositories
             return Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
 
-        
+        public void Update(TEntity entity)
+        {
+            Context.Set<TEntity>().Update(entity);
+        }
+
+       
     }
 }
